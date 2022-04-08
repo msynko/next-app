@@ -1,4 +1,4 @@
-
+import BasePage from "../../components/BasePage";
 import BaseLayout from "../../components/shared/Layout"
 import axios from "axios";
 
@@ -6,11 +6,14 @@ export default function PortfolioDetail({ post }) {
     console.log(post)
     return (
         <BaseLayout>
-
-            <h1>{post.title}</h1>
+            <BasePage>
+                <h1>{post.title}</h1>
             <p>
                 {post.body}
             </p>
+            
+            </BasePage>
+
         </BaseLayout>
 
     )
