@@ -18,6 +18,21 @@ const BsNavLink = ({ href, title}) => {
   )
 }
 
+const LoginBTn = () => {
+    return (
+        <span className="nav-link port-navbar-link clickable">
+            Login
+        </span>
+      )
+}
+
+const LogoutBTn = () => {
+    return (
+        <span className="nav-link port-navbar-link clickable">
+            Logout
+        </span>
+      )
+}
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -37,22 +52,30 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
+                <NavItem className="port-navbar-item">
+                <BsNavLink href="/" title="Home"/>
+                </NavItem>
+                <NavItem className="port-navbar-item">
+                <BsNavLink href="/about" title="About"/>
+                </NavItem>
+                <NavItem className="port-navbar-item">
+                <BsNavLink href="/portfolios" title="Portfolios"/>
+                </NavItem>
+                <NavItem className="port-navbar-item">
+                <BsNavLink href="/blogs" title="Blogs"/>
+                </NavItem>
+                <NavItem className="port-navbar-item">
+                <BsNavLink href="/cv" title="Cv"/>
+                </NavItem>
+            </Nav>
+            <Nav className="clickable" navbar >
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/" title="Home"/>
+                <LoginBTn/>
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/about" title="About"/>
+                <LogoutBTn/>
             </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/portfolios" title="Portfolios"/>
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/blogs" title="Blogs"/>
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <BsNavLink href="/cv" title="Cv"/>
-            </NavItem>
-          </Nav>
+            </Nav>
         </Collapse>
       </Navbar>
     </div>

@@ -1,5 +1,5 @@
-import BaseLayout from "../components/shared/Layout"
-import BasePage from "../components/BasePage";
+import BaseLayout from "@/components/shared/Layout"
+import BasePage from "@/components/BasePage";
 export default function About() {
     return (
         <BaseLayout>

@@ -1,39 +1,28 @@
-import BasePage from "../../components/BasePage";
-import BaseLayout from "../../components/shared/Layout"
-import axios from "axios";
+import BasePage from "@/components/BasePage";
+import BaseLayout from "@/components/Layout"
+import { useGetData } from "actions";
+import { useRouter } from "next/router";
 
-export default function PortfolioDetail({ post }) {
-    console.log(post)
+export default function PortfolioDetail() {
+    const router = useRouter();
+    const {data: portfolio, error, loading} =
+     useGetData(router.query.id ? `/api/v1/posts/${router.query.id}` : null);
+
     return (
-        <BaseLayout>
-            <BasePage>
-                <h1>{post.title}</h1>
-            <p>
-                {post.body}
-            </p>
-            
-            </BasePage>
-
-        </BaseLayout>
-
+      <BaseLayout>
+        <BasePage>
+        { loading && <p>Loading Data...</p>}
+        { error && <div className="alert alert-danger">{error.message}</div>}
+        { portfolio &&
+          <>
+            <h1>I am Portfolio page</h1>
+            <h1>{portfolio.title}</h1>
+            <p>BODY: {portfolio.body}</p>
+            <p>ID: {portfolio.id}</p>
+          </>
+        }
+        </BasePage>
+      </BaseLayout>
     )
-  }
-
-
-export async function getServerSideProps({ params }) {
-    try {
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        const posts = response.data;
-        const post = posts.find(({id}) => id == params.id)
-    
-        return {
-            props: {
-            post
-        }, 
-    }
-    } catch (e) {
-        console.error(e)
-    }
-   
   }
 

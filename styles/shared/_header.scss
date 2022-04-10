@@ -12,6 +12,7 @@
         letter-spacing: 1px;
         font-weight: bold;
       }
+ 
   
       &-item {
         margin-left: 10px;
@@ -35,3 +36,6 @@
       }
     }
   }
+  div.collapse.navbar-collapse{
+    justify-content: space-between !important;
+}
