@@ -1,12 +1,11 @@
 import BasePage from "@/components/BasePage";
 import BaseLayout from "@/components/Layout"
-import { useGetData } from "actions";
+import { useGetPostsById } from "actions";
 import { useRouter } from "next/router";
 
 export default function PortfolioDetail() {
     const router = useRouter();
-    const {data: portfolio, error, loading} =
-     useGetData(router.query.id ? `/api/v1/posts/${router.query.id}` : null);
+    const {data: portfolio, error, loading} = useGetPostsById(router.query.id);
 
     return (
       <BaseLayout>

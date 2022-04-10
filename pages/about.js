@@ -1,4 +1,4 @@
-import BaseLayout from "@/components/shared/Layout"
+import BaseLayout from "@/components/Layout"
 import BasePage from "@/components/BasePage";
 export default function About() {
     return (
