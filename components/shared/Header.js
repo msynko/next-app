@@ -9,6 +9,7 @@ import {
   NavItem
 } from 'reactstrap';
 import Typed from 'react-typed';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const BsNavLink = ({ href, title}) => {
   return (
@@ -20,23 +21,19 @@ const BsNavLink = ({ href, title}) => {
 
 const LoginBTn = () => {
     return (
-        <span className="nav-link port-navbar-link clickable">
-            Login
-        </span>
+      <a className="nav-link port-navbar-link" href="/api/auth/login" >Login</a>
       )
 }
 
 const LogoutBTn = () => {
     return (
-        <span className="nav-link port-navbar-link clickable">
-            Logout
-        </span>
+      <a className="nav-link port-navbar-link" href="/api/auth/logout" >Logout</a>
       )
 }
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
+  const { user, error, isLoading } = useUser();
   return (
     <div>
       <Navbar
@@ -66,15 +63,27 @@ const Header = () => {
                 </NavItem>
                 <NavItem className="port-navbar-item">
                 <BsNavLink href="/cv" title="Cv"/>
+            </NavItem>
+            <NavItem className="port-navbar-item">
+                <BsNavLink href="/secret" title="secret"/>
                 </NavItem>
             </Nav>
-            <Nav className="clickable" navbar >
-            <NavItem className="port-navbar-item">
-                <LoginBTn/>
-            </NavItem>
-            <NavItem className="port-navbar-item">
-                <LogoutBTn/>
-            </NavItem>
+          <Nav className="clickable" navbar >
+            { !isLoading &&
+              <>
+                {
+                  user &&
+                  <NavItem className="port-navbar-item">
+                    <LogoutBTn />
+                  </NavItem>
+                }
+                {
+                  !user && 
+                    <NavItem className="port-navbar-item">
+                      <LoginBTn/>
+                    </NavItem>
+                }
+              </> }
             </Nav>
         </Collapse>
       </Navbar>

@@ -3,12 +3,13 @@ import Link from "next/link";
 import BasePage from "@/components/BasePage";
 import { useGetPosts } from "actions";
 
-
 export default function Porfolios() {
     const { data, error, loading } = useGetPosts();
+
+
     return (
         <BaseLayout>
-            <BasePage> 
+            <BasePage > 
                 <h1>Porfolios page</h1>
                 { data && (
                     data.map((post) => (

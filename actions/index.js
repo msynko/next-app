@@ -4,13 +4,11 @@ import useSWR from 'swr';
 const fetcher = (...args) =>
     fetch(...args).then(async res => {
         const result = await res.json();
-
         if (res.status !== 200) {
             return Promise.reject(result)
         } else {
             return result
         }
-    
     })
 
 export const useGetPosts = () => {
@@ -24,6 +22,7 @@ export const useGetPostsById = (id) => {
 
     return {data, error, loading: !data && !error, ...rest}
 }
+
 
 // export const useGetData = (url) => {
 //   const [data, setData] = useState();

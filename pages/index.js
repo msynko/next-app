@@ -5,9 +5,11 @@ import Typed from 'react-typed';
 
 
 let types = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"]
+
 export default function Home() {
+
   return (
-    <BaseLayout className="cover">
+    <BaseLayout className="cover" >
       <div className="main-section">
         <div className="background-image">
           <Image src="/images/background-index.png" layout="fill" objectFit='cover' alt="backgroundImage"/>
