@@ -3,11 +3,12 @@ import BasePage from "@/components/BasePage";
 import { withAuth } from "@/hoc/withAuth";
 
 
-function Secret({ user, loading}) {
+function OnlyAdmin({ user, loading }) {
+    debugger
     return (
         <BaseLayout user={user} loading={loading}>
             <BasePage>
-                <h1>Secret page - {user.name}</h1>
+                <h1>Admin page - {user.name}</h1>
             </BasePage>
         </BaseLayout>
     )} 
@@ -17,6 +18,6 @@ function Secret({ user, loading}) {
 // const withAuth = (Component) => props=> 
 //     <Component title='Hello world' {...props} />
     
-export default withAuth(Secret);
+export default withAuth(OnlyAdmin, 'admin');
 
   

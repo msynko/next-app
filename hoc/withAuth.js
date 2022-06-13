@@ -1,20 +1,23 @@
 /* eslint-disable react/display-name */
-import { useUser } from '@auth0/nextjs-auth0';
+import { useGetUser } from "@/actions/user";
 import Redirect from "@/components/Redirect";
 
 export const withAuth = (Component) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
     return props => {
-        const { user, error, isLoading } = useUser();
+        const { data, loading } = useGetUser();
 
-        if (isLoading) {
+        console.log(data)
+        if (loading) {
             return <p>Loading</p>
         }
-        if (!user) {
+        if (!data) {
             return <Redirect ssr to={"/api/auth/login"} />
         } else {
-            return <Component user={user} loading={isLoading} {...props} />
+            // if (data && data[process.env.AUTH0_NAMESPACE + '/roles'].includes(role))
+                
+            return <Component user={data} loading={loading} {...props} />
         }  
     }
    
